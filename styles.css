@@ -1,0 +1,246 @@
+/* styles.css */
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif    ;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    display: auto;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, nav, main, footer {
+    padding: 20px;
+}
+
+header {
+    background-color: #45b463;
+    color: #e0f7fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+
+
+header h1 {
+    flex-grow: 1;
+    
+}
+
+header .logo-left img, header {
+    height: 50px;
+    width: auto;
+}
+
+.logo {
+    width: 200px;
+   
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00695c;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #94de93;
+    color: #6cc894;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+section{
+    flex: 1 1 350px;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #54d398;
+    border-radius: 5px;
+    background-color: #cbe9d0;
+    text-align: center;
+    min-height: auto;
+    margin-bottom: auto;
+}
+
+
+
+
+section#rotas-botoes button{
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    border: none;
+    background-color: #4bb163;
+    color: #e0f7fa;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+section#rotas-botoes-scl button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    border: none;
+    background-color: #4bb163;
+    color: #e0f7fa;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow:auto;
+    
+}
+
+.rotas-botoes-scl{
+    max-height: 300px;
+    overflow: auto;
+}
+
+
+
+section#antas button:hover,
+section#pedra button:hover {
+    background-color: #9ff1a1;
+}
+
+footer {
+    background-color: #45b463;
+    color: #e0f7fa;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* Media Queries */
+@media (max-width: 1000px) {
+    
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section {
+        margin: 0 0 10px 0;
+    }
+
+    .footer {
+        
+            background-color: #45b463;
+            color: #e0f7fa;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; 
+    }
+     
+     #rotas-diretas {
+    
+       margin-bottom: auto;
+    }
+
+}
+
+
+.myButton {
+	background-color:#44c767;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:15px 19px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+    margin: 1px;
+    margin-bottom:  5px;
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myButton2 {
+	background-color:#44c767;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:15px 19px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+    margin: 1px;
+    margin-bottom:  5px;
+}
+.myButton2:hover {
+	background-color:#5cbf2a;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
+
+/* Estilização da caixa de pesquisa */
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-box input[type="text"] {
+    padding: 10px;
+    border: 2px solid #54d398;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+    width: 250px;
+    transition: width 0.4s ease-in-out;
+}
+
+.search-box input[type="text"]:focus {
+    width: 300px;
+}
+
+
+
+.caixa-conteudo {
+    border: 1px solid #54d398;
+    border-radius: 5px;
+    background-color: #aed7c6;
+    padding: 20px;
+    margin-top: 20px;
+}
