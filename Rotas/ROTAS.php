@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="ROTAS.css">
     <script>
         function updateMap(link) {
+            console.log('Atualizando mapa com link:', link);
             document.getElementById('mapFrame').src = link;
         }
     </script>
