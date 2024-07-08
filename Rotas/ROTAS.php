@@ -22,31 +22,19 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Consulta SQL para recuperar dados da tabela desejada
-$sql = "SELECT * FROM $table";
+// Consulta SQL para recuperar o link do iframe da tabela desejada
+$sql = "SELECT iframe_link FROM $table LIMIT 1";
 $result = $conn->query($sql);
 
-// Inicializar variáveis para o iframe e dados da tabela
+// Inicializar variável para o link do iframe
 $iframeLink = "";
-$dataRows = "";
 
-// Processar os resultados da consulta
+// Processar o resultado da consulta
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        // Se não houver um link de iframe definido ainda, pegue o link do primeiro resultado
-        if (empty($iframeLink)) {
-            $iframeLink = $row["iframe_link"];
-        }
-        // Construir linhas da tabela
-        $dataRows .= "<tr>";
-        $dataRows .= "<td>" . $row["bairros"] . "</td>";
-        $dataRows .= "<td>" . $row["pontos_de_embarque"] . "</td>";
-        $dataRows .= "<td>" . $row["horario_07x19hs"] . "</td>";
-        $dataRows .= "<td>" . $row["horario_19x07hs"] . "</td>";
-        $dataRows .= "</tr>";
-    }
+    $row = $result->fetch_assoc();
+    $iframeLink = $row["iframe_link"];
 } else {
-    $dataRows = "<tr><td colspan='4'>Nenhum dado encontrado</td></tr>";
+    die("Nenhum link de iframe encontrado na tabela $table.");
 }
 
 ?>
@@ -69,25 +57,7 @@ if ($result->num_rows > 0) {
         <div class="content">
             <!-- Exibir iframe recuperado do banco de dados -->
             <div class="map-iframe">
-                <iframe src="<?php echo $iframeLink; ?>" width="640" height="480"></iframe>
-            </div>
-            <!-- Exibir tabela com dados do banco de dados -->
-            <div class="table-container">
-                <div class="table-box">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>BAIRROS</th>
-                                <th>PONTOS DE EMBARQUE</th>
-                                <th>07x19hs</th>
-                                <th>19x07hs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php echo $dataRows; ?>
-                        </tbody>
-                    </table>
-                </div>
+                <iframe src="<?php echo $iframeLink; ?>" width="640" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
         </div>
     </div>
