@@ -22,19 +22,31 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Consulta SQL para recuperar o link do iframe da tabela desejada
-$sql = "SELECT iframe_link FROM $table LIMIT 1";
+// Consulta SQL para recuperar dados da tabela desejada, incluindo o link do iframe
+$sql = "SELECT bairros, pontos_de_embarque, horario_07x19hs, horario_19x07hs, iframe_link FROM $table";
 $result = $conn->query($sql);
 
-// Inicializar variável para o link do iframe
+// Inicializar variáveis para o iframe e dados da tabela
 $iframeLink = "";
+$dataRows = "";
 
-// Processar o resultado da consulta
+// Processar os resultados da consulta
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $iframeLink = $row["iframe_link"];
+    while($row = $result->fetch_assoc()) {
+        // Se não houver um link de iframe definido ainda, pegue o link do primeiro resultado
+        if (empty($iframeLink)) {
+            $iframeLink = $row["iframe_link"];
+        }
+        // Construir linhas da tabela
+        $dataRows .= "<tr>";
+        $dataRows .= "<td>" . $row["bairros"] . "</td>";
+        $dataRows .= "<td>" . $row["pontos_de_embarque"] . "</td>";
+        $dataRows .= "<td>" . $row["horario_07x19hs"] . "</td>";
+        $dataRows .= "<td>" . $row["horario_19x07hs"] . "</td>";
+        $dataRows .= "</tr>";
+    }
 } else {
-    die("Nenhum link de iframe encontrado na tabela $table.");
+    $dataRows = "<tr><td colspan='4'>Nenhum dado encontrado</td></tr>";
 }
 
 ?>
@@ -58,6 +70,24 @@ if ($result->num_rows > 0) {
             <!-- Exibir iframe recuperado do banco de dados -->
             <div class="map-iframe">
                 <iframe src="<?php echo $iframeLink; ?>" width="640" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <!-- Exibir tabela com dados do banco de dados -->
+            <div class="table-container">
+                <div class="table-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BAIRROS</th>
+                                <th>PONTOS DE EMBARQUE</th>
+                                <th>07x19hs</th>
+                                <th>19x07hs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php echo $dataRows; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
